@@ -1,0 +1,42 @@
+[
+	{
+		"id": 1,
+		"title": "Atomic's One's",
+		"statement": "As the book contains theoretical content as well as solved questions.",
+		"regular_price": {
+			"currency": "USD",
+			"value": 13.84
+		},
+		"image": "../../../image/catalog/id1.png"
+	},
+	{
+		"id": 2,
+		"title": "The Dark Light",
+		"statement": "As the book contains theoretical content as well as solved questions.",
+		"regular_price": {
+			"currency": "USD",
+			"value": 86.11
+		},
+		"image": "../../../image/catalog/id2.png"
+	},
+	{
+		"id": 3,
+		"title": "Copy The Dark Light",
+		"statement": "As the book contains theoretical content as well as solved questions.",
+		"regular_price": {
+			"currency": "USD",
+			"value": 46.76
+		},
+		"image": "../../../image/catalog/id2.png"
+	},
+	{
+		"id": 4,
+		"title": "Copy Atomic's One's",
+		"statement": "As the book contains theoretical content as well as solved questions.",
+		"regular_price": {
+			"currency": "USD",
+			"value": 26.51
+		},
+		"image": "../../../image/catalog/id1.png"
+	}
+]

@@ -1,58 +1,73 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React, { Fragment, useRef, useEffect, useState, Suspense, SyntheticEvent } from "react";
+import { HashRouter, Route, Routes, useNavigate, useParams } from "react-router-dom";
+// import "./App.css";
+import P1_main from "./app/components/page1/P1_main";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
+type RouteParamsType = {
+	routeid: string;
+};
+
+type AppPropsType = {
+	listElements: React.LazyExoticComponent<React.FC<{}>>[];
+};
+
+function App(props: AppPropsType): JSX.Element {
+	var pause = false;
+	console.log("New state");
+
+	const [isFetching, setFetching] = useState(true);
+	const [currentPage, setCurrentPage] = useState(0);
+	// useEffect(() => {
+	// 	debugger;
+	// 	window.scrollTo(0, 0);
+	// }, []);
+
+	useEffect(() => {
+		console.log("Add Event");
+		const handlerWheel = (event: Event) => {
+			if (pause && currentPage && !isFetching && currentPage < props.listElements.length) {
+				const ev = (event.target as any as { scrollingElement: { scrollHeight: number; scrollTop: number; clientHeight: number } })
+					.scrollingElement;
+				let scrollPos = ev.scrollHeight - (ev.clientHeight + ev.scrollTop);
+				if (scrollPos < 20) {
+					setFetching(true);
+					console.log("Fetching");
+				}
+			} else pause = true;
+		};
+		document.addEventListener("scroll", handlerWheel);
+		console.log("Change Event", isFetching);
+		if (isFetching) {
+			console.log("Goto = ");
+			setCurrentPage((currentPage) => ++currentPage);
+			setFetching(false);
+		}
+		return () => {
+			console.log("Remove Event");
+			document.removeEventListener("scroll", handlerWheel);
+		};
+	}, [isFetching]);
+
+	return (
+		<Fragment>
+			{currentPage
+				? props.listElements
+						.filter((_, idx) => {
+							console.log("Map");
+							return idx < currentPage;
+						})
+						.map((Elem, idx) => (
+							<Fragment key={`${currentPage} ${idx}`}>
+								<Elem />
+							</Fragment>
+						))
+				: null}
+			{/* <P1_main /> */}
+		</Fragment>
+	);
 }
 
 export default App;
+type sdf = {
+	elems: JSX.Element;
+};

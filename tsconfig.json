@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
-		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"target": "es2016",
+		"lib": ["es5", "es6", "dom", "dom.iterable", "esnext"],
 		"allowJs": true,
 		"skipLibCheck": true,
 		"esModuleInterop": true,
@@ -14,8 +14,8 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"noEmit": true,
-		"jsx": "react-jsx",
-		"jsxImportSource": "@emotion/react"
+
+		"jsx": "react-jsx"
 	},
-	"include": ["src"]
+	"include": ["src", "./src/declare.d.ts"]
 }
