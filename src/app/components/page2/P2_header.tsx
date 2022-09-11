@@ -13,6 +13,7 @@ const headerStyle = css({
 	fontFamily: "Cardo",
 	justifyItems: "center",
 	backgroundColor: "white",
+	alignSelf: "center",
 
 	"& > p": {
 		fontSize: "1.5rem",

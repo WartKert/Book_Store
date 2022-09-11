@@ -8,6 +8,7 @@ import App from "./App";
 import { Global, css } from "@emotion/react";
 import "./index.css";
 import Composition from "./app/components/composition";
+import * as constants from "./app/components/constant";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -30,9 +31,8 @@ const globalStyle = css`
 	}
 `;
 
-const NumberOfPages: number = 2;
 const listElements: React.LazyExoticComponent<React.FC<{}>>[] = [];
-for (let i = 1; i <= NumberOfPages; i++) {
+for (let i = 1; i <= constants.NUM_OF_PAGES; i++) {
 	listElements.push(React.lazy(() => import(`./app/components/page${i}/P${i}_main`)));
 }
 console.log("List ");

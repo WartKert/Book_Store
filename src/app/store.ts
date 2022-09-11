@@ -10,13 +10,23 @@ import {
 } from "@reduxjs/toolkit";
 import { rejects } from "assert";
 
-type ListBooksItemsType = {
+export type ListBooksItemsType = {
 	id: number;
+	title: string;
 	statement: string;
 	regular_price: {
 		currency: string;
 		value: number;
 	};
+	image: string;
+};
+
+export type ListBooksCommentsType = {
+	id: number;
+	name: string;
+	text: string;
+	evaluation: number;
+	comment: string;
 	image: string;
 };
 
@@ -33,21 +43,25 @@ type ListBooksItemsType = {
 // 		)
 // });
 
-const preloadedState = {
+const preloadedListBooksState = {
 	listBooks: null as Array<ListBooksItemsType> | null | string,
 };
 
 export const fetchBooks = createAsyncThunk("listBooks/fetchBooks", async (arg: string, { rejectWithValue }) => {
 	const response = await fetch(arg);
+	const ret = await response.json();
+	return ret;
+});
 
-	const te = await response.json();
-	// debugger;
-	return te;
+export const fetchComments = createAsyncThunk("listComments/fetchComments", async (arg: string, { rejectWithValue }) => {
+	const response = await fetch(arg);
+	const ret = await response.json();
+	return ret;
 });
 
 const listBooksSlice = createSlice({
 	name: "listBooks",
-	initialState: preloadedState,
+	initialState: preloadedListBooksState,
 	reducers: {
 		addBookToListBooks: (state, action: PayloadAction<ListBooksItemsType>) => {
 			if (state.listBooks) {
@@ -62,8 +76,27 @@ const listBooksSlice = createSlice({
 			.addCase(fetchBooks.fulfilled, (state, action) => {
 				state.listBooks = action.payload;
 			})
-			.addCase(fetchBooks.rejected, (state, action) => {
+			.addCase(fetchBooks.rejected, (state, _) => {
 				state.listBooks = "error";
+			});
+	},
+});
+
+const preloadedListCommentsState = {
+	listComments: null as Array<ListBooksCommentsType> | null | string,
+};
+
+const listCommentsSlice = createSlice({
+	name: "listComments",
+	initialState: preloadedListCommentsState,
+	reducers: {},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchComments.fulfilled, (state, action) => {
+				state.listComments = action.payload;
+			})
+			.addCase(fetchComments.rejected, (state, _) => {
+				state.listComments = "error";
 			});
 	},
 });
@@ -71,6 +104,7 @@ const listBooksSlice = createSlice({
 export const store = configureStore({
 	reducer: {
 		listBookReducer: listBooksSlice.reducer,
+		listCommentsReducer: listCommentsSlice.reducer,
 	},
 });
 

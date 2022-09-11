@@ -2,12 +2,12 @@
 import React, { Fragment, PureComponent } from "react";
 import { css, jsx, SerializedStyles } from "@emotion/react";
 
-type ButtonType = {
+type ButtonPropsType = {
 	css?: SerializedStyles;
-	nameOfClass?: string;
+	className?: string;
 };
 
-export default function Button(props: React.PropsWithChildren<ButtonType>): JSX.Element {
+export default function Button(props: React.PropsWithChildren<ButtonPropsType>): JSX.Element {
 	return (
 		<Fragment>
 			<button {...props}>{props.children}</button>
