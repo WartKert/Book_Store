@@ -4,6 +4,7 @@ import { css, SerializedStyles } from "@emotion/react";
 
 type TitlePropsType = {
 	css?: SerializedStyles;
+	className?: string;
 	classtextblock?: string;
 	classborderblock?: string;
 };

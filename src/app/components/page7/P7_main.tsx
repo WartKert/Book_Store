@@ -25,7 +25,8 @@ const P7MainStyle = css({
 	"& > div:nth-of-type(odd)": {
 		display: "flex",
 		flexDirection: "column",
-		alignItems: "left",
+		alignItems: "start",
+		minWidth: "250px",
 	},
 	"& > div:nth-of-type(odd) > *": {
 		margin: "5px 8%",
