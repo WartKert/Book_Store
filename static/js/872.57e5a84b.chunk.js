@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbook_store=self.webpackChunkbook_store||[]).push([[872],{5872:function(e,t,n){n.r(t),n.d(t,{default:function(){return s}});n(2791);var c=n(4402);var o={name:"13csq45",styles:"& >img{display:block;object-fit:scale-down;object-position:center;width:100%;height:100%;}"};function s(e){return(0,c.tZ)("div",{css:o,children:e.children})}}}]);
+//# sourceMappingURL=872.57e5a84b.chunk.js.map
