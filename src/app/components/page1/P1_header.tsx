@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import React, { Fragment, memo } from "react";
+import React from "react";
 import { css } from "@emotion/react";
 import imageLogo from "../../../image/logo.png";
 import imageFIcon from "../../../image/F.png";
@@ -39,7 +39,6 @@ const headerStyle = css({
 	"& .rightHeader a > button": {
 		fontSize: "large",
 		fontFamily: "Cardo",
-		// fontWeight: "400",
 		width: "100%",
 		height: "100%",
 		backgroundColor: "#FFCA42",
@@ -65,18 +64,18 @@ function LeftHeader(): JSX.Element {
 	return (
 		<div className={"leftHeader"}>
 			<div className='logo'>
-				<img className='imgLogo' src={imageLogo} />
+				<img className='imgLogo' src={imageLogo} alt={"Image_logo"} />
 				<p className='textLogo'>Pages</p>
 			</div>
 			<div className={"refIcon"}>
 				<a href={"https://vk.com"}>
-					<img src={imageFIcon} />
+					<img src={imageFIcon} alt={"Image_icon"} />
 				</a>
 				<a href={"https://telegram.org"}>
-					<img src={imageTIcon} />
+					<img src={imageTIcon} alt={"Image_icon"} />
 				</a>
-				<a>
-					<img src={imageIIcon} />
+				<a href={"https://linkedin.com"}>
+					<img src={imageIIcon} alt={"Image_icon"} />
 				</a>
 			</div>
 		</div>
@@ -86,14 +85,14 @@ function LeftHeader(): JSX.Element {
 function RightHeader(): JSX.Element {
 	return (
 		<div className={"rightHeader"}>
-			<a>Home</a>
-			<a>About</a>
-			<a>Pages</a>
-			<a>Contact us</a>
-			<a>
-				<img src={imageShoppingCart} />
+			<a href={"/"}>Home</a>
+			<a href={"/"}>About</a>
+			<a href={"/"}>Pages</a>
+			<a href={"/"}>Contact us</a>
+			<a href={"/"}>
+				<img src={imageShoppingCart} alt={"Image_shopping_cart"} />
 			</a>
-			<a className={"button"}>
+			<a className={"button"} href={"/"}>
 				<Button>Order Today</Button>
 			</a>
 		</div>

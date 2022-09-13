@@ -1,5 +1,4 @@
 /** @jsxImportSource @emotion/react */
-import React, { Fragment } from "react";
 import { css } from "@emotion/react";
 import imageTire from "../../../image/tire.png";
 import Button from "../button";
@@ -76,7 +75,7 @@ export default function LeftMain(): JSX.Element {
 	return (
 		<div css={style}>
 			<div className={"text p1"}>
-				<img src={imageTire} />
+				<img src={imageTire} alt={"Image_tire"} />
 				<p>Welcom To Pages!!!</p>
 			</div>
 			<div className={"text p2"}>

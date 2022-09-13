@@ -9,7 +9,6 @@ const P3MainStyle = css({
 	backgroundColor: "#F5F8FC",
 	height: "100%",
 	maxHeight: "700px",
-
 	minWidth: `${constants.MIN_WIDTH}px`,
 	maxWidth: `${constants.MAX_WIDTH}px`,
 	fontFamily: "Cardo",
@@ -122,7 +121,7 @@ export default function Main(): JSX.Element {
 		<div css={P3MainStyle}>
 			<div className={"gridBlock"}>
 				<div className={"leftMain"}>
-					<img src={imageAuthor} />
+					<img src={imageAuthor} alt={"Image_author"} />
 				</div>
 				<h2>About The Author</h2>
 				<div className={"border"} />
@@ -144,7 +143,7 @@ export default function Main(): JSX.Element {
 					</div>
 				</div>
 				<div className={"visitCard"}>
-					<img src={imageCode} />
+					<img src={imageCode} alt={"Image_code"} />
 					<p>{constants.FULL_NAME}</p>
 					<p>{constants.MAIL}</p>
 					<p>{constants.PHONE}</p>

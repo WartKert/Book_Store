@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
-import { css, SerializedStyles } from "@emotion/react";
-
+import { css } from "@emotion/react";
 import * as constants from "../constant";
-
 import Title from "../title";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { fetchComments } from "../../store";
@@ -115,11 +113,10 @@ const titleStyle = css({
 export default function Main(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const select = useAppSelector((state) => state.listCommentsReducer.listComments);
-	// const [curBlockElements, setCurBlockElements] = useState({ left: 0, right: 1 });
 
 	useEffect(() => {
 		dispatch(fetchComments("https://wartkert.github.io/json/book_store/comment.json"));
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div css={P7MainStyle}>
@@ -235,7 +232,7 @@ function BlockComment(props: BlockCommentPropsType): JSX.Element {
 	return (
 		<div css={BlockCommentStyle}>
 			<div>
-				<img src={props.data.image} />
+				<img src={props.data.image} alt={"Image_back"} />
 				<div>
 					<p>{props.data.name}</p>
 					<Circle number={props.data.evaluation} className={"eval"} css={BlockCircleStyle} />

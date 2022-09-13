@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import React, { Fragment } from "react";
-import { css, SerializedStyles } from "@emotion/react";
+import React from "react";
+import { css } from "@emotion/react";
 
 type RightMainPropsType = {
 	imageSrc?: string;

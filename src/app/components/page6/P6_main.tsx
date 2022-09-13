@@ -1,11 +1,8 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
-
 import * as constants from "../constant";
-
 import Title from "../title";
-import Image from "../image";
 
 const P5MainStyle = css({
 	height: "100%",
@@ -58,7 +55,6 @@ const P5MainStyle = css({
 		display: "flex",
 		flexWrap: "nowrap",
 		alignItems: "center",
-		// justifyItems:'flex-start',
 	},
 	"& [class ^= subBlock] > .description > div > div": {
 		borderRadius: "50%",

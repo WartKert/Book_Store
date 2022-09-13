@@ -1,69 +1,45 @@
-import { debug } from "console";
-import React, { Fragment, useRef, useEffect, useState, Suspense, SyntheticEvent } from "react";
-import { HashRouter, Route, Routes, useNavigate, useParams } from "react-router-dom";
-// import "./App.css";
-import P1_main from "./app/components/page1/P1_main";
-
-type RouteParamsType = {
-	routeid: string;
-};
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
+import React, { Fragment, useEffect, useState, Suspense, SyntheticEvent } from "react";
 
 type AppPropsType = {
 	listElements: React.LazyExoticComponent<React.FC<{}>>[];
 };
 
+const style = css({
+	width: "100vw",
+	height: "100vh",
+	overflowY: "scroll",
+});
+
 function App(props: AppPropsType): JSX.Element {
-	var pause = false;
-	console.log("New state");
+	let isUpdate = false;
+	const [currentPage, setCurrentPage] = useState(1);
 
-	const [isFetching, setFetching] = useState(true);
-	const [currentPage, setCurrentPage] = useState(0);
-
-	useEffect(() => {
-		console.log("Add Event");
-		const handlerWheel = (event: Event) => {
-			// debugger;
-
-			if (pause && currentPage && !isFetching && currentPage < props.listElements.length) {
-				let ev;
-				if (event.type === "wheel") {
-					ev = (
-						event as any as {
-							view: { document: { scrollingElement: { scrollHeight: number; scrollTop: number; clientHeight: number } } };
-						}
-					).view.document.scrollingElement;
-				} else {
-					ev = (event.target as any as { scrollingElement: { scrollHeight: number; scrollTop: number; clientHeight: number } })
-						.scrollingElement;
-				}
+	const handlerWheel = (event: React.UIEvent<HTMLDivElement>) => {
+		if (currentPage < props.listElements.length && !isUpdate) {
+			if ((event.type === "wheel" && (event as any as React.WheelEvent).deltaY > 0) || event.type === "scroll") {
+				const ev = event.currentTarget;
 				let scrollPos = ev.scrollHeight - (ev.clientHeight + ev.scrollTop);
 				if (scrollPos < 20) {
-					setFetching(true);
-					console.log("Fetching");
+					isUpdate = true;
+					setCurrentPage((prev) => {
+						return prev + 1;
+					});
 				}
-			} else pause = true;
-		};
-		document.addEventListener("scroll", handlerWheel);
-		document.addEventListener("wheel", handlerWheel);
-		console.log("Change Event", isFetching);
-		if (isFetching) {
-			console.log("Goto = ");
-			setCurrentPage((currentPage) => ++currentPage);
-			setFetching(false);
+			}
 		}
-		return () => {
-			console.log("Remove Event");
-			document.removeEventListener("scroll", handlerWheel);
-			document.removeEventListener("wheel", handlerWheel);
-		};
-	}, [isFetching]);
-	// view.document.scrollingElement.clientHeight;
+	};
+
+	useEffect(() => {
+		isUpdate = false;
+	}, [currentPage]);
+
 	return (
-		<Fragment>
+		<div onScroll={handlerWheel} onWheel={handlerWheel} css={style}>
 			{currentPage
 				? props.listElements
 						.filter((_, idx) => {
-							console.log("Map");
 							return idx < currentPage;
 						})
 						.map((Element, idx) => (
@@ -72,7 +48,7 @@ function App(props: AppPropsType): JSX.Element {
 							</Fragment>
 						))
 				: null}
-		</Fragment>
+		</div>
 	);
 }
 

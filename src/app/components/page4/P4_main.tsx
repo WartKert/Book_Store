@@ -9,6 +9,7 @@ import imageCoffe from "../../../image/back_fon.png";
 
 import * as constants from "../constant";
 import Button from "../button";
+import Title from "../title";
 
 const P4MainStyle = css({
 	height: "100%",
@@ -18,7 +19,6 @@ const P4MainStyle = css({
 	minWidth: `${constants.MIN_WIDTH}px`,
 	maxWidth: `${constants.MAX_WIDTH}px`,
 	fontFamily: "Cardo",
-	// padding: "140px 30px",
 	margin: "auto",
 
 	"& .firstBlock": {
@@ -127,13 +127,36 @@ const P4MainStyle = css({
 	},
 });
 
+const titleStyle = css({
+	paddingTop: "20px",
+	color: "#1B3764",
+	fontSize: "larger",
+	"& .text": {
+		paddingTop: "50px",
+		fontSize: "x-large",
+		textAlign: "center",
+	},
+	"& .border": {
+		width: "50px",
+		borderTop: "3px solid #FFCA42",
+		margin: "15px auto",
+	},
+	"& .image": {
+		gridArea: "C",
+		width: "100%",
+		height: "100%",
+		objectFit: "contain",
+	},
+});
+
 export default function Main(): JSX.Element {
 	return (
 		<div css={P4MainStyle}>
 			<div className={"firstBlock"}>
 				<div className={"title"}>
-					<p>Trusted By The Best</p>
-					<div className={"border"} />
+					<Title css={titleStyle} classtextblock={"text"} classborderblock={"border"}>
+						Trusted By The Best
+					</Title>
 				</div>
 				<div className={"subBlocks subBlock1"}>
 					<h2>Amazen Corp.</h2>

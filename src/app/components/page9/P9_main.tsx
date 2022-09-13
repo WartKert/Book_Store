@@ -1,12 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import { css } from "@emotion/react";
-
 import * as constants from "../constant";
-import image1 from "../../../image/resources/id1.png";
-import image2 from "../../../image/resources/id2.png";
-import image3 from "../../../image/resources/id3.png";
-
 import Title from "../title";
 
 const P7MainStyle = css({

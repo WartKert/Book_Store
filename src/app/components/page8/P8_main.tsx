@@ -139,7 +139,7 @@ type BlockPropsType = {
 function Block(props: BlockPropsType): JSX.Element {
 	return (
 		<div css={BlockStyle}>
-			<img src={props.data.image} />
+			<img src={props.data.image} alt={"Image_back"} />
 			<h2>{props.data.title}</h2>
 			<p>{props.data.text}</p>
 			<div>

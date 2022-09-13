@@ -1,15 +1,4 @@
-import {
-	configureStore,
-	ThunkAction,
-	Action,
-	createReducer,
-	createAction,
-	createSlice,
-	createAsyncThunk,
-	PayloadAction,
-} from "@reduxjs/toolkit";
-import { rejects } from "assert";
-
+import { configureStore, ThunkAction, Action, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export type ListBooksItemsType = {
 	id: number;
 	title: string;
@@ -30,19 +19,6 @@ export type ListBooksCommentsType = {
 	image: string;
 };
 
-// const addBookToListBooks = createAction<ListBooksItemsType>('store/add_book');
-// const reducer = createReducer(null as ListBooksItemsType[] | null, (builder) => {
-// 	builder.addCase(addBookToListBooks, (state, action) => {
-// 		state = null;
-// 	})
-// 		.addMatcher(
-// 			(action): action is ListBooksItemsType[] => action,
-// 			(state, action) => {
-// 				state?.push(action.payload);
-// 			}
-// 		)
-// });
-
 const preloadedListBooksState = {
 	listBooks: null as Array<ListBooksItemsType> | null | string,
 };
@@ -62,15 +38,7 @@ export const fetchComments = createAsyncThunk("listComments/fetchComments", asyn
 const listBooksSlice = createSlice({
 	name: "listBooks",
 	initialState: preloadedListBooksState,
-	reducers: {
-		addBookToListBooks: (state, action: PayloadAction<ListBooksItemsType>) => {
-			if (state.listBooks) {
-				// state.listBooks.push(action.payload);
-			} else {
-				state.listBooks = [action.payload];
-			}
-		},
-	},
+	reducers: {},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchBooks.fulfilled, (state, action) => {
@@ -111,6 +79,3 @@ export const store = configureStore({
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootState, unknown, Action<string>>;
-function rejectWithValue(): any {
-	throw new Error("Function not implemented.");
-}
